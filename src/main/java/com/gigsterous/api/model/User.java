@@ -1,10 +1,17 @@
 package com.gigsterous.api.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +20,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private long id;
 
 	@Column(name = "first_name")
@@ -23,7 +31,11 @@ public class User {
 
 	@Column(name = "email")
 	private String email;
-	
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
+	private Set<Ensemble> ensembles = new HashSet<Ensemble>();
+
 	protected User() {
 		// empty constuctor for Hibernate
 	}
@@ -58,6 +70,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<Ensemble> getEnsembles() {
+		return ensembles;
+	}
+
+	public void setEnsembles(Set<Ensemble> ensembles) {
+		this.ensembles = ensembles;
 	}
 
 }
