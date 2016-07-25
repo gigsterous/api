@@ -23,7 +23,7 @@ public class User {
 
 	@Column(name = "email")
 	private String email;
-
+	
 	protected User() {
 		// empty constuctor for Hibernate
 	}
