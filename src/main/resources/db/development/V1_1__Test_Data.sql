@@ -1,11 +1,12 @@
-INSERT INTO users (user_id, first_name, last_name, email) VALUES 
-	('1', 'Peter', 'Smith', 'peter@hotmail.com'),
-	('2', 'John', 'Doe', 'john@email.cz'),
-	('3', 'Gandalf', 'Grey', 'grey@gmail.com'),
-	('4', 'Gandal', 'White', 'white@gmail.com'),
-	('5', 'Aragorn', 'Paragon', 'aragorn@email.cz'),
-	('6', 'Samuel', 'Jaxon', 'jaxon@hotmail.com'),
-	('7', 'Leopold', 'janacek', 'leo.janak@seznam.cz');
+INSERT INTO users (user_id, first_name, last_name, email, gender) VALUES 
+	('1', 'Peter', 'Smith', 'peter@hotmail.com', 'MALE'),
+	('2', 'John', 'Doe', 'john@email.cz', 'MALE'),
+	('3', 'Gandalf', 'Grey', 'grey@gmail.com', 'MALE'),
+	('4', 'Gandal', 'White', 'white@gmail.com', 'MALE'),
+	('5', 'Aragorn', 'Paragon', 'aragorn@email.cz', 'MALE'),
+	('6', 'Samuel', 'Jaxon', 'jaxon@hotmail.com', 'MALE'),
+	('7', 'Leopold', 'janacek', 'leo.janak@seznam.cz', 'MALE'),
+	('8', 'Sue', 'Widow', 'sue@email.com', 'FEMALE');
 	
 INSERT INTO ensembles (ensemble_id, name) VALUES 
 	('1', 'Skull Crashers'),
