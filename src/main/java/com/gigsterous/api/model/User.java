@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 @Entity
 @Table(name = "users")
@@ -31,6 +33,10 @@ public class User {
 
 	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
@@ -70,6 +76,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public Set<Ensemble> getEnsembles() {

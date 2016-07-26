@@ -4,6 +4,7 @@ CREATE TABLE users (
     first_name VARCHAR(32),
     last_name VARCHAR(32),
     email VARCHAR(128) UNIQUE,
+    gender VARCHAR(8),
     PRIMARY KEY (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
