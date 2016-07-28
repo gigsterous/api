@@ -9,8 +9,9 @@ CREATE TABLE users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS ensembles;
-CREATE TABLE ensembles(
+CREATE TABLE ensembles (
     ensemble_id BIGINT auto_increment,
+    ensemble_type VARCHAR(16),
     name VARCHAR(32),
     PRIMARY KEY (ensemble_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -23,6 +24,3 @@ CREATE TABLE users_ensembles (
   CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (user_id),
   CONSTRAINT fk_ensemble FOREIGN KEY (ensemble_id) REFERENCES ensembles (ensemble_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-

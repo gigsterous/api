@@ -1,4 +1,4 @@
-package com.gigsterous.api.model;
+package com.gigsterous.api.model.enums;
 
 public enum Gender {
 	MALE,

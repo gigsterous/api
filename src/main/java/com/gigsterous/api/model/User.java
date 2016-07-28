@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.gigsterous.api.model.enums.Gender;
+
 import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 
