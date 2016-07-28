@@ -5,13 +5,13 @@ INSERT INTO users (user_id, first_name, last_name, email, gender) VALUES
 	('4', 'Gandal', 'White', 'white@gmail.com', 'MALE'),
 	('5', 'Aragorn', 'Paragon', 'aragorn@email.cz', 'MALE'),
 	('6', 'Samuel', 'Jaxon', 'jaxon@hotmail.com', 'MALE'),
-	('7', 'Leopold', 'janacek', 'leo.janak@seznam.cz', 'MALE'),
+	('7', 'Leopold', 'Janacek', 'leo.janak@seznam.cz', 'MALE'),
 	('8', 'Sue', 'Widow', 'sue@email.com', 'FEMALE');
 	
-INSERT INTO ensembles (ensemble_id, name) VALUES 
-	('1', 'Skull Crashers'),
-	('2', 'Abortion Orchestra'),
-	('3', 'Lalas');
+INSERT INTO ensembles (ensemble_id, ensemble_type, name) VALUES 
+	('1', 'BAND', 'Skull Crashers'),
+	('2', 'ORCHESTRA', 'Abortion Orchestra'),
+	('3', 'BAND', 'Lalas');
 	
 INSERT INTO users_ensembles (user_id, ensemble_id) VALUES 
 	('1', '1'),
