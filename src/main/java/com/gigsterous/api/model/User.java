@@ -16,11 +16,16 @@ import javax.persistence.Table;
 
 import com.gigsterous.api.model.enums.Gender;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 public class User {
 
 	@Id
@@ -47,54 +52,6 @@ public class User {
 
 	protected User() {
 		// empty constuctor for Hibernate
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLast_name() {
-		return last_name;
-	}
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public Set<Ensemble> getEnsembles() {
-		return ensembles;
-	}
-
-	public void setEnsembles(Set<Ensemble> ensembles) {
-		this.ensembles = ensembles;
 	}
 
 }

@@ -17,10 +17,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.gigsterous.api.model.enums.EnsembleType;
-import com.gigsterous.api.model.enums.Gender;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "ensembles")
+@Getter
+@Setter
 public class Ensemble {
 
 	@Id
@@ -41,38 +45,6 @@ public class Ensemble {
 
 	protected Ensemble() {
 		// hibernate
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public EnsembleType getEnsembleType() {
-		return ensembleType;
-	}
-
-	public void setEnsembleType(EnsembleType type) {
-		this.ensembleType = type;
-	}
-
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
 	}
 
 }
