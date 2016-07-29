@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.gigsterous.api.model.enums.Gender;
@@ -49,6 +50,10 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
 	private Set<Ensemble> ensembles = new HashSet<Ensemble>();
+	
+	@OneToMany(mappedBy ="user")
+	private Set<Skill> skills = new HashSet<Skill>();
+
 
 	protected User() {
 		// empty constuctor for Hibernate
