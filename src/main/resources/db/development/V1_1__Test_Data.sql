@@ -22,3 +22,13 @@ INSERT INTO users_ensembles (user_id, ensemble_id) VALUES
 	('4', '3'),
 	('5', '2'),
 	('6', '3');
+	
+INSERT INTO skills (user_id, instrument, level) VALUES 
+	('1', 'GUITAR', 'BEGINNER'),
+	('2', 'BASS', 'ADVANCED'),
+	('3', 'DRUMS', 'BEGINNER'),
+	('3', 'PIANO', 'PROFESSIONAL'),
+	('4', 'GUITAR', 'ADVANCED'),
+	('4', 'VIOLIN', 'BEGINNER'),
+	('5', 'DRUMS', 'PROFESSIONAL'),
+	('6', 'BASS', 'ADVANCED');
