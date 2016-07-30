@@ -6,6 +6,8 @@ CREATE TABLE users (
     last_name VARCHAR(32),
     email VARCHAR(128) UNIQUE,
     gender VARCHAR(8),
+    location VARCHAR(32),
+    date_birth VARCHAR(10),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* ENSEMBLES */

@@ -46,6 +46,12 @@ public class User {
 	@Column(name = "gender")
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
+	
+	@Column(name = "location")
+	private String location;
+	
+	@Column(name = "date_birth")
+	private String dateOfBirth;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
