@@ -7,7 +7,7 @@ CREATE TABLE users (
     email VARCHAR(128) UNIQUE,
     gender VARCHAR(8),
     location VARCHAR(32),
-    date_birth VARCHAR(10),
+    date_birth TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* ENSEMBLES */

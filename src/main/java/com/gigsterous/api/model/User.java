@@ -1,5 +1,6 @@
 package com.gigsterous.api.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gigsterous.api.model.enums.Gender;
 
 import lombok.Getter;
@@ -51,7 +53,8 @@ public class User {
 	private String location;
 	
 	@Column(name = "date_birth")
-	private String dateOfBirth;
+	@JsonFormat(pattern = "YYYY-MM-dd")
+	private Date dateOfBirth;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
