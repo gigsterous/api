@@ -37,8 +37,8 @@ public class Skill {
 	private Level level;
 	
 	@ManyToOne
-	@JoinColumn (name="user_id")
-	private User user;
+	@JoinColumn (name="person_id")
+	private Person person;
 	
 	protected Skill() {
 		// hibernate

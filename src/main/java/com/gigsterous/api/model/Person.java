@@ -26,14 +26,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 
 @Entity
-@Table(name = "users")
+@Table(name = "people")
 @Getter
 @Setter
-public class User {
+public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
+	@Column(name = "person_id")
 	private long id;
 
 	@Column(name = "first_name")
@@ -57,14 +57,14 @@ public class User {
 	private Date dateOfBirth;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
+	@JoinTable(name = "people_ensembles", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
 	private Set<Ensemble> ensembles = new HashSet<Ensemble>();
 	
-	@OneToMany(mappedBy ="user")
+	@OneToMany(mappedBy ="person")
 	private Set<Skill> skills = new HashSet<Skill>();
 
 
-	protected User() {
+	protected Person() {
 		// empty constuctor for Hibernate
 	}
 

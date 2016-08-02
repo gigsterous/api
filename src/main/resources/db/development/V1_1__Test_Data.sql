@@ -1,4 +1,4 @@
-INSERT INTO users (user_id, first_name, last_name, email, gender, location, date_birth) VALUES 
+INSERT INTO people (person_id, first_name, last_name, email, gender, location, date_birth) VALUES 
 	('1', 'Peter', 'Smith', 'peter@hotmail.com', 'MALE', 'London', '1980-04-08'),
 	('2', 'John', 'Doe', 'john@email.cz', 'MALE', 'London', '1985-06-12'),
 	('3', 'Gandalf', 'Grey', 'grey@gmail.com', 'MALE', 'New York', '1990-03-01'),
@@ -13,7 +13,7 @@ INSERT INTO ensembles (ensemble_id, ensemble_type, name) VALUES
 	('2', 'ORCHESTRA', 'Abortion Orchestra'),
 	('3', 'BAND', 'Lalas');
 	
-INSERT INTO users_ensembles (user_id, ensemble_id) VALUES 
+INSERT INTO people_ensembles (person_id, ensemble_id) VALUES 
 	('1', '1'),
 	('2', '1'),
 	('3', '1'),
@@ -23,7 +23,7 @@ INSERT INTO users_ensembles (user_id, ensemble_id) VALUES
 	('5', '2'),
 	('6', '3');
 	
-INSERT INTO skills (user_id, instrument, level) VALUES 
+INSERT INTO skills (person_id, instrument, level) VALUES 
 	('1', 'GUITAR', 'BEGINNER'),
 	('2', 'BASS', 'ADVANCED'),
 	('3', 'DRUMS', 'BEGINNER'),

@@ -40,8 +40,8 @@ public class Ensemble {
 	private EnsembleType ensembleType;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "users_ensembles", joinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"))
-	private Set<User> users = new HashSet<User>();
+	@JoinTable(name = "people_ensembles", joinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
+	private Set<Person> people = new HashSet<Person>();
 
 	protected Ensemble() {
 		// hibernate
