@@ -11,3 +11,16 @@ There are several profiles in the application which can be switched using SPRING
 
 * main - live environment, database connection needs to be specified
 * development - contains development data in an in-memory database
+
+## Security
+The whole application is secured with OAuth2. Authorization server needs to be running and contacted for the access token:
+
+```
+curl foo:foosecret@localhost:9000/gigsterous-auth/oauth/token -d grant_type=password -d username=bar -d password=barsecret
+```
+
+Each request to the API must contain the following header:
+
+```
+Authorization: Bearer $TOKEN$
+```
