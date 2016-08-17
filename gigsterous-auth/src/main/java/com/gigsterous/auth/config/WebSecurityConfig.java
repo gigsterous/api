@@ -22,10 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		// @formatter:off
-		web.ignoring().antMatchers("/index.html").antMatchers("/favicon.ico").antMatchers("/images/**")
-				.antMatchers("/scripts/**").antMatchers("/stylesheets/**").antMatchers("/vendor/**");
-		// @formatter:on
+		web.ignoring().antMatchers("/login");
 	}
 
 	@Bean
