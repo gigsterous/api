@@ -47,6 +47,7 @@ There is a configuration file for Docker Compose in the root folder, which deals
 ### Shell Script
 
 Last but not least - there is a run.sh script, which takes care of the whole workflow:
+
 1. Builds gigsterous-auth image
 2. Builds gigsterous-api image
 3. Runs Docker Compose and deploys both images
