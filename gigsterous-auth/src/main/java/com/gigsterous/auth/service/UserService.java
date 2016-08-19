@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.gigsterous.auth.domain.User;
+import com.gigsterous.auth.model.User;
 import com.gigsterous.auth.repository.UserRepository;
 
 @Service("userDetailsService")
