@@ -1,4 +1,4 @@
-package com.gigsterous.auth.domain;
+package com.gigsterous.auth.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.UserDetailsAwareConfigurer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +22,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User implements UserDetails {
+	
+	static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +39,9 @@ public class User implements UserDetails {
 	@Column(name = "password", nullable = false)
 	private String password;
 	
+	@Column(name = "enabled", nullable = false)
+	private boolean enabled;
+	
 	protected User() {
 		// hibernate
 	}
@@ -51,26 +55,24 @@ public class User implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO implement
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO implement
+		// we never lock accounts
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO
+		// credentials never expire
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO implement
-		return true;
+		return enabled;
 	}
 
 }

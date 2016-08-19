@@ -5,4 +5,5 @@ CREATE TABLE users (
     email VARCHAR(128) UNIQUE,
     username VARCHAR(32) UNIQUE,
     password VARCHAR(32),
+    enabled BOOL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

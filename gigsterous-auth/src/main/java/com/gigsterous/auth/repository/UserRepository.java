@@ -2,7 +2,7 @@ package com.gigsterous.auth.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.gigsterous.auth.domain.User;
+import com.gigsterous.auth.model.User;
 
 /**
  * Access to the user data. JpaRepository grants us convenient access methods here.

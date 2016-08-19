@@ -3,7 +3,6 @@ package com.gigsterous.auth.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,7 +29,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 	public void configure(AuthorizationServerEndpointsConfigurer configurer) throws Exception {
 		configurer.authenticationManager(authenticationManager);
 		configurer.userDetailsService(userDetailsService);
-		configurer.accessTokenConverter(accessTokenConverter());
 	}
 
 	@Override
@@ -44,13 +42,4 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 			.resourceIds("resource");
 	}
 
-	/**
-	 * Use custom jwt token converter to enhance the token with custom fields
-	 *
-	 * @return CustomTokenConverter
-	 */
-	@Bean
-	public CustomTokenConverter accessTokenConverter() {
-		return new CustomTokenConverter();
-	}
 }
