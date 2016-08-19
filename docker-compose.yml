@@ -1,0 +1,24 @@
+# This is docker-compose configuration file for dev deployment
+# Creates both images and links them together
+
+version: '2'
+services:
+  gigsterous-api:
+    #build: ./gigsterous-api/src/main/docker
+    image: gigsterous/gigsterous-api
+    ports:
+     - "8080:8080"
+    environment:
+     - SPRING_PROFILES_ACTIVE=development
+     - security.oauth2.resource.userInfoUri=http://gigsterous-auth:9000/gigsterous-auth/user
+    depends_on:
+     - gigsterous-auth
+    links:
+    - gigsterous-auth
+  gigsterous-auth:
+    #build: ./gigsterous-auth/src/main/docker
+    image: gigsterous/gigsterous-auth
+    ports:
+     - "9000:9000"
+    environment:
+     - SPRING_PROFILES_ACTIVE=development
