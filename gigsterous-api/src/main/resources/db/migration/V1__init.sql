@@ -18,7 +18,7 @@ CREATE TABLE ensembles (
     name VARCHAR(32),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* USERS-ENSEMBLES mapping */
+/* PEOPLE-ENSEMBLES mapping */
 DROP TABLE IF EXISTS people_ensembles;
 CREATE TABLE people_ensembles (
   person_id BIGINT NOT NULL REFERENCES people (person_id),
@@ -33,4 +33,20 @@ CREATE TABLE skills (
     person_id BIGINT REFERENCES people (person_id),
     instrument VARCHAR(16),
     level VARCHAR(16)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* EVENTS */
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+    event_id BIGINT PRIMARY KEY auto_increment,
+    venue VARCHAR(64),
+    event_date TIMESTAMP,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* PEOPLE-EVENTS mapping */
+DROP TABLE IF EXISTS people_events;
+CREATE TABLE people_events (
+  person_id BIGINT NOT NULL REFERENCES people (person_id),
+  event_id BIGINT NOT NULL REFERENCES events (event_id),
+  PRIMARY KEY (person_id, event_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
