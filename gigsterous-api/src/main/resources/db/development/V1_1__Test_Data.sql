@@ -32,3 +32,13 @@ INSERT INTO skills (person_id, instrument, level) VALUES
 	('4', 'VIOLIN', 'BEGINNER'),
 	('5', 'DRUMS', 'PROFESSIONAL'),
 	('6', 'BASS', 'ADVANCED');
+	
+INSERT INTO events (event_id, venue, event_date) VALUES 
+	('1', 'Vagon', '2016-12-01'),
+	('2', 'Rudolfinum', '2016-12-24');
+	
+INSERT INTO people_events (person_id, event_id) VALUES 
+	('1', '1'),
+	('2', '1'),
+	('3', '2'),
+	('4', '2');
