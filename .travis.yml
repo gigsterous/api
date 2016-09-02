@@ -1,9 +1,11 @@
 language: java
+jdk:
+  - oraclejdk8
 
 branches:
   only:
     - master
 
 script:
-    - mvn clean compile -f gigsterous-api
-    - mvn clean compile -f gigsterous-auth
+  - mvn clean compile -f gigsterous-api
+  - mvn clean compile -f gigsterous-auth
