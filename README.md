@@ -2,11 +2,13 @@
 
 This repository contains the REST API for the Gigsterous project.
 
+[![Build Status](https://travis-ci.org/gigsterous/api.svg)](https://travis-ci.org/gigsterous/api)
+
 ## Installation
 
 This project uses project lombok. In order to use this project inside some IDE, you need to install lombok in your IDE. Follow the instructions in the project page: https://projectlombok.org/
 
-The API is a Spring boot application. 
+The API is a Spring boot application.
 
 There are several profiles in the application which can be switched using SPRING_PROFILES_ACTIVE environmental variable.
 
