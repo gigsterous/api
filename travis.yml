@@ -1,0 +1,9 @@
+language: java
+
+branches:
+  only:
+    - master
+
+script:
+    - mvn clean compile gigsterous-api
+    - mvn clean compile gigsterous-auth
