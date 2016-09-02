@@ -5,5 +5,5 @@ branches:
     - master
 
 script:
-    - mvn clean build -f gigsterous-api
-    - mvn clean build -f gigsterous-auth
+    - mvn clean compile -f gigsterous-api
+    - mvn clean compile -f gigsterous-auth
