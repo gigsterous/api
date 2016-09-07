@@ -63,7 +63,6 @@ public class Person {
 	private Set<Ensemble> ensembles = new HashSet<Ensemble>();
 	
 	@OneToMany(mappedBy ="person")
-	@JsonBackReference
 	private Set<Skill> skills = new HashSet<Skill>();
 	
 	@ManyToMany(cascade = CascadeType.ALL)

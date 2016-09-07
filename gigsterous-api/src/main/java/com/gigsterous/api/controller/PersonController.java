@@ -1,13 +1,16 @@
 package com.gigsterous.api.controller;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gigsterous.api.model.Ensemble;
+import com.gigsterous.api.model.Event;
 import com.gigsterous.api.model.Person;
 import com.gigsterous.api.repository.PersonRepository;
 
@@ -15,17 +18,38 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("people")
+@RequestMapping("/people")
 public class PersonController {
-	
+
 	@Autowired
 	private PersonRepository personRepo;
-	
-	@RequestMapping(method=RequestMethod.GET)
-    public @ResponseBody List<Person> getPeople() {
+
+	@RequestMapping(method = RequestMethod.GET)
+	public @ResponseBody Collection<Person> getPeople() {
 		log.debug("GET - people");
-		
-        return personRepo.findAll();
-    }
+
+		return personRepo.findAll();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody Person getPerson(@PathVariable long id) {
+		log.debug("GET - person {}", id);
+
+		return personRepo.findOne(id);
+	}
+	
+	@RequestMapping(value = "/{id}/ensembles", method = RequestMethod.GET)
+	public @ResponseBody Collection<Ensemble> getPersonEnsembles(@PathVariable long id) {
+		log.debug("GET - ensembles for person {}", id);
+
+		return personRepo.findOne(id).getEnsembles();
+	}
+	
+	@RequestMapping(value = "/{id}/events", method = RequestMethod.GET)
+	public @ResponseBody Collection<Event> getPersonEvents(@PathVariable long id) {
+		log.debug("GET - events for person {}", id);
+
+		return personRepo.findOne(id).getEvents();
+	}
 
 }
