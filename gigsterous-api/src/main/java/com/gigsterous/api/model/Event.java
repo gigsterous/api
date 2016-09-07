@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
@@ -39,6 +40,7 @@ public class Event {
 	private Date date;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonBackReference
 	@JoinTable(name = "people_events", joinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
 	private Set<Person> people = new HashSet<Person>();
 

@@ -35,12 +35,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Exposes Spring Data repositories over REST -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-
 		<!-- Enables Java Persistence API -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
