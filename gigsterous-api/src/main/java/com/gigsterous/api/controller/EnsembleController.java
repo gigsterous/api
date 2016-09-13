@@ -2,10 +2,9 @@ package com.gigsterous.api.controller;
 
 import java.util.Collection;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,24 +24,22 @@ public class EnsembleController {
 	private EnsembleRepository ensembleRepo;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Ensemble> getEnsembles() {
+	public ResponseEntity<Collection<Ensemble>> getEnsembles() {
 		log.debug("GET - ensembles");
 
-		return ensembleRepo.findAll();
+		return new ResponseEntity<>(ensembleRepo.findAll(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Ensemble getEnsemble(@PathVariable long id, HttpServletResponse response) {
+	public ResponseEntity<Ensemble> getEnsemble(@PathVariable long id) {
 		log.debug("GET - ensemble {}", id);
 
 		Ensemble ensemble = ensembleRepo.findOne(id);
 
 		if (ensemble != null) {
-			return ensemble;
+			return new ResponseEntity<>(ensemble, HttpStatus.OK);
 		} else {
-			response.setStatus(HttpStatus.NOT_FOUND.value());
-			
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 

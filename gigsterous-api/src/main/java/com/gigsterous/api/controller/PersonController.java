@@ -2,10 +2,9 @@ package com.gigsterous.api.controller;
 
 import java.util.Collection;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,54 +26,44 @@ public class PersonController {
 	private PersonRepository personRepo;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Person> getPeople() {
-		log.debug("GET - people");
-
-		return personRepo.findAll();
+	public ResponseEntity<Collection<Person>> getPeople() {
+		return new ResponseEntity<>(personRepo.findAll(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Person getPerson(@PathVariable long id, HttpServletResponse response) {
-		log.debug("GET - person {}", id);
-		
+	public ResponseEntity<Person> getPerson(@PathVariable long id) {
 		Person person = personRepo.findOne(id);
-		
+
 		if (person != null) {
-			return person;
+			return new ResponseEntity<>(personRepo.findOne(id), HttpStatus.OK);
 		} else {
-			response.setStatus(HttpStatus.NOT_FOUND.value());
-			
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@RequestMapping(value = "/{id}/ensembles", method = RequestMethod.GET)
-	public Collection<Ensemble> getPersonEnsembles(@PathVariable long id, HttpServletResponse response) {
+	public ResponseEntity<Collection<Ensemble>> getPersonEnsembles(@PathVariable long id) {
 		log.debug("GET - ensembles for person {}", id);
-		
+
 		Person person = personRepo.findOne(id);
-		
+
 		if (person != null) {
-			return person.getEnsembles();
+			return new ResponseEntity<>(person.getEnsembles(), HttpStatus.OK);
 		} else {
-			response.setStatus(HttpStatus.NOT_FOUND.value());
-			
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@RequestMapping(value = "/{id}/events", method = RequestMethod.GET)
-	public Collection<Event> getPersonEvents(@PathVariable long id, HttpServletResponse response) {
+	public ResponseEntity<Collection<Event>> getPersonEvents(@PathVariable long id) {
 		log.debug("GET - events for person {}", id);
 
 		Person person = personRepo.findOne(id);
-		
+
 		if (person != null) {
-			return person.getEvents();
+			return new ResponseEntity<>(person.getEvents(), HttpStatus.OK);
 		} else {
-			response.setStatus(HttpStatus.NOT_FOUND.value());
-			
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 
