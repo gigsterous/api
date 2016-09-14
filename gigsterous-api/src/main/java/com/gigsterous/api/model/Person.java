@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gigsterous.api.model.enums.Gender;
 
@@ -40,7 +41,7 @@ public class Person {
 	private String firstName;
 
 	@Column(name = "last_name")
-	private String last_name;
+	private String lastName;
 
 	@Column(name = "email")
 	private String email;
@@ -57,6 +58,7 @@ public class Person {
 	private Date dateOfBirth;
 
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonBackReference
 	@JoinTable(name = "people_ensembles", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
 	private Set<Ensemble> ensembles = new HashSet<Ensemble>();
 	
@@ -64,6 +66,7 @@ public class Person {
 	private Set<Skill> skills = new HashSet<Skill>();
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonBackReference
 	@JoinTable(name = "people_events", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"), inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"))
 	private Set<Event> events = new HashSet<Event>();
 
