@@ -31,6 +31,9 @@ public class Event {
 	@Column(name = "event_id")
 	private long id;
 	
+	@Column(name = "name")
+	private String name;
+	
 	@Column(name = "venue")
 	private String venue;
 	
