@@ -39,6 +39,7 @@ CREATE TABLE skills (
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
     event_id BIGINT PRIMARY KEY auto_increment,
+    name VARCHAR(64),
     venue VARCHAR(64),
     event_date TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
