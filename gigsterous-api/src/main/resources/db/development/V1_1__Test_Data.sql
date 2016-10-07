@@ -42,3 +42,7 @@ INSERT INTO people_events (person_id, event_id) VALUES
 	('2', '1'),
 	('3', '2'),
 	('4', '2');
+	
+INSERT INTO venues (venue_id, name, lat, lon, google_id) VALUES 
+	('1', 'Vagon', '0.0', '0.0', 'abc'),
+	('2', 'Rudolfinum', '0.0', '0.0', 'efg');

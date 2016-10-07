@@ -51,3 +51,13 @@ CREATE TABLE people_events (
   event_id BIGINT NOT NULL REFERENCES events (event_id),
   PRIMARY KEY (person_id, event_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* VENUES */
+DROP TABLE IF EXISTS venues;
+CREATE TABLE venues (
+    venue_id BIGINT PRIMARY KEY auto_increment,
+    name VARCHAR(128),
+    lat DOUBLE,
+    lon DOUBLE,
+    google_id VARCHAR(128),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
