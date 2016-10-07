@@ -35,12 +35,23 @@ CREATE TABLE skills (
     level VARCHAR(16)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/* VENUES */
+DROP TABLE IF EXISTS venues;
+CREATE TABLE venues (
+    venue_id BIGINT PRIMARY KEY auto_increment,
+    name VARCHAR(128),
+    lat DOUBLE,
+    lon DOUBLE,
+    google_id VARCHAR(128),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 /* EVENTS */
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
     event_id BIGINT PRIMARY KEY auto_increment,
     name VARCHAR(64),
-    venue VARCHAR(64),
+    venue_id BIGINT REFERENCES venues (venue_id),
     event_date TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -50,14 +61,4 @@ CREATE TABLE people_events (
   person_id BIGINT NOT NULL REFERENCES people (person_id),
   event_id BIGINT NOT NULL REFERENCES events (event_id),
   PRIMARY KEY (person_id, event_id),
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/* VENUES */
-DROP TABLE IF EXISTS venues;
-CREATE TABLE venues (
-    venue_id BIGINT PRIMARY KEY auto_increment,
-    name VARCHAR(128),
-    lat DOUBLE,
-    lon DOUBLE,
-    google_id VARCHAR(128),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

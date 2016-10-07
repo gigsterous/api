@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -35,8 +36,9 @@ public class Event {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "venue")
-	private String venue;
+	@ManyToOne
+	@JoinColumn (name="venue_id")
+	private Venue venue;
 	
 	@Column(name = "event_date")
 	@JsonFormat(pattern = "YYYY-MM-dd HH:mm")
