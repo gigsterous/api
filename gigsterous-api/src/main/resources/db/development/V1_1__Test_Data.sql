@@ -34,8 +34,8 @@ INSERT INTO skills (person_id, instrument, level) VALUES
 	('6', 'BASS', 'ADVANCED');
 	
 INSERT INTO venues (venue_id, name, lat, lon, google_id) VALUES 
-	('1', 'Vagon', '0.0', '0.0', 'abc'),
-	('2', 'Rudolfinum', '0.0', '0.0', 'efg');
+	('1', 'Vagon Klub', '50.0822', '14.4180', 'ChIJYUzTPu6UC0cRRXlP_KxRfgk'),
+	('2', 'Rudolfinum', '50.0899', '14.4154', 'ChIJ4zz7t-eUC0cRYoyBVOzwQ-o');
 	
 INSERT INTO events (event_id, venue_id, name, event_date) VALUES 
 	('1', '1', 'Hard Rock Night', '2016-12-01 20:00:00'),
