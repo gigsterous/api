@@ -70,8 +70,4 @@ public class Person {
 	@JoinTable(name = "people_events", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"), inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"))
 	private Set<Event> events = new HashSet<Event>();
 
-	protected Person() {
-		// empty constuctor for Hibernate
-	}
-
 }
