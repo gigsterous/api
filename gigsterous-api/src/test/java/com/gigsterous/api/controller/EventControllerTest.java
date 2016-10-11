@@ -40,7 +40,7 @@ public class EventControllerTest {
 		testEvent = new Event();
 		testEvent.setId(1l);
 		testEvent.setName("Party");
-		testEvent.setDate(new Timestamp(0));
+		testEvent.setStartDate(new Timestamp(487296000));
 		
 		Venue venue = new Venue();
 		venue.setId(1l);
@@ -52,15 +52,22 @@ public class EventControllerTest {
 	}
 
 	@Test
-	public void responseOkPersonTest() throws Exception {
+	public void responseOkEventTest() throws Exception {
 		given(this.eventRepo.findOne(1l)).willReturn(testEvent);
 		mvc.perform(get("/events/1").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
 				.andExpect(jsonPath("$.id", is(1)))
 				.andExpect(jsonPath("$.name", is("Party")))
-				.andExpect(jsonPath("$.lastName", is("Doe")))
-				.andExpect(jsonPath("$.location", is("London")))
-				.andExpect(jsonPath("$.email", is("john@doe.com")))
-				.andExpect(jsonPath("$.gender", is("MALE")));
+				.andExpect(jsonPath("$.startDate", is("1970-01-06 15:21")));
+	}
+	
+	@Test
+	public void responseNotFoundEventTest() throws Exception {
+		mvc.perform(get("/events/2").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void responseOkEventsTest() throws Exception {
+		mvc.perform(get("/events").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
 	}
 
 }

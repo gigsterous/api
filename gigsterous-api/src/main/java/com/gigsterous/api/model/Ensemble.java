@@ -43,8 +43,4 @@ public class Ensemble {
 	@JoinTable(name = "people_ensembles", joinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
 	private Set<Person> people = new HashSet<Person>();
 
-	protected Ensemble() {
-		// hibernate
-	}
-
 }
