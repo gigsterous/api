@@ -30,7 +30,4 @@ public class Venue {
 	@Column(name = "lon")
 	private double lon;
 	
-	protected Venue() {
-		// hibernate
-	}
 }
