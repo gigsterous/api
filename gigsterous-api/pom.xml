@@ -66,6 +66,12 @@
 			<artifactId>spring-security-oauth2</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+		</dependency>
+
+
 		<!-- Database migration tool -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
