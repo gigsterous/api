@@ -37,9 +37,9 @@ INSERT INTO venues (venue_id, name, lat, lon, google_id) VALUES
 	('1', 'Vagon Klub', '50.0822', '14.4180', 'ChIJYUzTPu6UC0cRRXlP_KxRfgk'),
 	('2', 'Rudolfinum', '50.0899', '14.4154', 'ChIJ4zz7t-eUC0cRYoyBVOzwQ-o');
 	
-INSERT INTO events (event_id, venue_id, name, event_date) VALUES 
-	('1', '1', 'Hard Rock Night', '2016-12-01 20:00:00'),
-	('2', '2', 'Christmas Chill', '2016-12-24 19:00:00');
+INSERT INTO events (event_id, venue_id, name, start_date, end_date) VALUES 
+	('1', '1', 'Hard Rock Night', '2016-12-01 20:00:00', '2016-12-01 23:00:00'),
+	('2', '2', 'Christmas Chill', '2016-12-24 19:00:00', '2016-12-24 22:00:00');
 	
 INSERT INTO people_events (person_id, event_id) VALUES 
 	('1', '1'),

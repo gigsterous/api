@@ -52,7 +52,8 @@ CREATE TABLE events (
     event_id BIGINT PRIMARY KEY auto_increment,
     name VARCHAR(64),
     venue_id BIGINT REFERENCES venues (venue_id),
-    event_date TIMESTAMP,
+    start_date TIMESTAMP,
+    end_date TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* PEOPLE-EVENTS mapping */
