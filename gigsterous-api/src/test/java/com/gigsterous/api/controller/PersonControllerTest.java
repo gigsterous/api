@@ -14,10 +14,11 @@ import com.gigsterous.api.model.Person;
 import com.gigsterous.api.model.enums.Gender;
 import com.gigsterous.api.repository.PersonRepository;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.mockito.BDDMockito.given;
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = PersonController.class, secure = false)
@@ -44,13 +45,14 @@ public class PersonControllerTest {
 
 	@Test
 	public void responseOkPersonTest() throws Exception {
-		String expected =
-				"{\"id\":1,\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john@doe.com\","
-				+ "\"gender\":\"MALE\",\"location\":\"London\",\"dateOfBirth\":null,\"skills\":[]}";
-
 		given(this.personRepo.findOne(1l)).willReturn(testPerson);
 		mvc.perform(get("/people/1").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
-				.andExpect(content().string(expected));
+				.andExpect(jsonPath("$.id", is(1)))
+				.andExpect(jsonPath("$.firstName", is("John")))
+				.andExpect(jsonPath("$.lastName", is("Doe")))
+				.andExpect(jsonPath("$.location", is("London")))
+				.andExpect(jsonPath("$.email", is("john@doe.com")))
+				.andExpect(jsonPath("$.gender", is("MALE")));
 	}
 
 	@Test
