@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,13 @@ public class VenueController {
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Venue> addVenue(@RequestBody Venue venue) {
+		log.debug("POST - venues");
+
+		return new ResponseEntity<>(venueRepo.save(venue), HttpStatus.CREATED);
 	}
 
 }
