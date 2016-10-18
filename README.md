@@ -3,8 +3,7 @@
 This repository contains the REST API for the Gigsterous project.
 
 [![Build Status](https://travis-ci.org/gigsterous/api.svg)](https://travis-ci.org/gigsterous/api)
-
-Test coverage: [Codecov](https://codecov.io/gh/gigsterous/api) 
+[![codecov](https://codecov.io/gh/gigsterous/api/branch/master/graph/badge.svg)](https://codecov.io/gh/gigsterous/api)
 
 ## Installation
 
