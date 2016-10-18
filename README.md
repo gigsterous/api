@@ -4,6 +4,8 @@ This repository contains the REST API for the Gigsterous project.
 
 [![Build Status](https://travis-ci.org/gigsterous/api.svg)](https://travis-ci.org/gigsterous/api)
 
+Test coverage: [Codecov](https://codecov.io/gh/gigsterous/api) 
+
 ## Installation
 
 This project uses project lombok. In order to use this project inside some IDE, you need to install lombok in your IDE. Follow the instructions in the project page: https://projectlombok.org/

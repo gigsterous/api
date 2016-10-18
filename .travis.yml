@@ -9,3 +9,6 @@ branches:
 script:
   - mvn clean compile test -f gigsterous-api
   - mvn clean compile test -f gigsterous-auth
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
