@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
+
 import com.gigsterous.api.model.Audition;
 import com.gigsterous.api.model.enums.Instrument;
 import com.gigsterous.api.model.enums.Level;
@@ -16,21 +18,29 @@ import com.gigsterous.api.model.enums.Level;
 @DataJpaTest
 public class AuditionRepositoryTest {
 
-    @Autowired
-    private AuditionRepository repository;
+	@Autowired
+	private AuditionRepository repository;
 
-    @Test
-    public void repositorySavesAndRetrievesAudition() {
-        Audition audition = new Audition();
-        audition.setInstrument(Instrument.BASS);
-        audition.setLevel(Level.ADVANCED);
-        
-        repository.save(audition);
-    	
-        Audition result = repository.findOne(1l);
-        
-        assertEquals(result.getInstrument(), Instrument.BASS);
-        assertEquals(result.getLevel(), Level.ADVANCED);
-    }
+	private Audition audition; // test audition
+
+	@Before
+	public void prepare() {
+		audition = new Audition();
+		audition.setId(1l);
+		audition.setInstrument(Instrument.BASS);
+		audition.setLevel(Level.ADVANCED);
+		audition.setEvent(null);
+		audition.setOwner(null);
+		
+		repository.save(audition);
+	}
+
+	@Test
+	public void repositoryRetrievesAudition() {
+		Audition result = repository.findOne(1l);
+
+		assertEquals(result.getInstrument(), Instrument.BASS);
+		assertEquals(result.getLevel(), Level.ADVANCED);
+	}
 
 }
