@@ -3,44 +3,70 @@ package com.gigsterous.api.repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
-
 import com.gigsterous.api.model.Audition;
+import com.gigsterous.api.model.Event;
+import com.gigsterous.api.model.Person;
 import com.gigsterous.api.model.enums.Instrument;
 import com.gigsterous.api.model.enums.Level;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@SpringBootTest
+@DirtiesContext
+@ActiveProfiles("development")
 public class AuditionRepositoryTest {
 
 	@Autowired
-	private AuditionRepository repository;
+	private AuditionRepository auditionRepository;
+	
+	@Autowired
+	private EventRepository eventRepository;
+	
+	@Autowired
+	private PersonRepository personRepository;
 
-	private Audition audition; // test audition
+	@Test
+	public void retrievesAllAuditions() {
+		Page<Audition> auditions = auditionRepository.findAll(new PageRequest(0, 10));
 
-	@Before
-	public void prepare() {
-		audition = new Audition();
-		audition.setId(1l);
-		audition.setInstrument(Instrument.BASS);
-		audition.setLevel(Level.ADVANCED);
-		audition.setEvent(null);
-		audition.setOwner(null);
-		
-		repository.save(audition);
+		assertEquals(2, auditions.getTotalElements());
 	}
 
 	@Test
-	public void repositoryRetrievesAudition() {
-		Audition result = repository.findOne(1l);
+	public void retrievesAuditionById() {
+		Audition result = auditionRepository.findOne(1l);
 
-		assertEquals(result.getInstrument(), Instrument.BASS);
+		assertEquals(result.getInstrument(), Instrument.GUITAR);
 		assertEquals(result.getLevel(), Level.ADVANCED);
+	}
+	
+	@Test
+	public void savesAuditionWithOwnerAndEventAndRetrievesItBack() {
+		Event event = eventRepository.findOne(1l);
+		Person person = personRepository.findOne(1l);
+		
+		Audition audition = new Audition();
+		audition.setInstrument(Instrument.DRUMS);
+		audition.setLevel(Level.BEGINNER);
+		audition.setEvent(event);
+		audition.setOwner(person);
+		
+		auditionRepository.save(audition);
+		
+		Audition result = auditionRepository.findOne(3l);
+
+		assertEquals(Instrument.DRUMS, result.getInstrument());
+		assertEquals(Level.BEGINNER, result.getLevel());
+		assertEquals(person.getId(), result.getOwner().getId());
+		assertEquals(event.getId(), result.getEvent().getId());
 	}
 
 }
