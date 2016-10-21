@@ -18,15 +18,10 @@ public class EnsembleRepositoryTest {
     private EnsembleRepository repository;
 
     @Test
-    public void repositorySavesAndRetrievesEnsemble() {
-        Ensemble ensemble = new Ensemble();
-        ensemble.setName("Rockers");
-        
-        repository.save(ensemble);
-    	
+    public void retrievesEnsembleById() {   	
         Ensemble result = repository.findOne(1l);
         
-        assertEquals(result.getName(), "Rockers");
+        assertEquals("Skull Crashers", result.getName());
     }
 
 }

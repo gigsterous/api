@@ -14,19 +14,14 @@ import com.gigsterous.api.model.Venue;
 @DataJpaTest
 public class VenueRepositoryTest {
 
-    @Autowired
-    private VenueRepository repository;
+	@Autowired
+	private VenueRepository repository;
 
-    @Test
-    public void repositorySavesAndRetrievesVenue() {
-        Venue venue = new Venue();
-        venue.setName("Vagon");
-        
-        repository.save(venue);
-    	
-        Venue result = repository.findOne(1l);
-        
-        assertEquals(result.getName(), "Vagon");
-    }
+	@Test
+	public void retrievesVenueById() {
+		Venue result = repository.findOne(1l);
+
+		assertEquals("Vagon Klub", result.getName());
+	}
 
 }
