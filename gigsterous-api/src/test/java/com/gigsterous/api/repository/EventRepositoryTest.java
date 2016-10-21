@@ -15,18 +15,13 @@ import com.gigsterous.api.model.Event;
 public class EventRepositoryTest {
 
     @Autowired
-    private EventRepository repository;
+    private EventRepository eventRepository;
 
     @Test
-    public void repositorySavesAndRetrievesEvent() {
-        Event event = new Event();
-        event.setName("Party");
+    public void retrievesEventById() {   	
+        Event result = eventRepository.findOne(1l);
         
-        repository.save(event);
-    	
-        Event result = repository.findOne(1l);
-        
-        assertEquals(result.getName(), "Party");
+        assertEquals("Hard Rock Night", result.getName());
     }
 
 }

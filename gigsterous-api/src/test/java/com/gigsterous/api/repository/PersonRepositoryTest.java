@@ -18,17 +18,11 @@ public class PersonRepositoryTest {
     private PersonRepository repository;
 
     @Test
-    public void repositorySavesAndRetrievesPerson() {
-        Person person = new Person();
-        person.setFirstName("John");
-        person.setLastName("Doe");
-        
-        repository.save(person);
-    	
+    public void retrievesPerson() {   	
         Person result = repository.findOne(1l);
         
-        assertEquals(result.getFirstName(), "John");
-        assertEquals(result.getLastName(), "Doe");
+        assertEquals("Peter", result.getFirstName());
+        assertEquals("Smith", result.getLastName());
     }
 
 }

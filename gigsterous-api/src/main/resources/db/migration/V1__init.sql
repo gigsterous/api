@@ -45,7 +45,6 @@ CREATE TABLE venues (
     google_id VARCHAR(128),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 /* EVENTS */
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
@@ -56,10 +55,29 @@ CREATE TABLE events (
     end_date TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/* AUDITIONS */
+DROP TABLE IF EXISTS auditions;
+CREATE TABLE auditions (
+    audition_id BIGINT PRIMARY KEY auto_increment,
+    instrument VARCHAR(16),
+    level VARCHAR(16),
+    owner_id BIGINT REFERENCES people (person_id),
+    selected_musician_id BIGINT REFERENCES people (person_id),
+    event_id BIGINT REFERENCES events (event_id),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /* PEOPLE-EVENTS mapping */
 DROP TABLE IF EXISTS people_events;
 CREATE TABLE people_events (
   person_id BIGINT NOT NULL REFERENCES people (person_id),
   event_id BIGINT NOT NULL REFERENCES events (event_id),
   PRIMARY KEY (person_id, event_id),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* PEOPLE-AUDITIONS mapping */
+DROP TABLE IF EXISTS people_auditions;
+CREATE TABLE people_auditions (
+  person_id BIGINT NOT NULL REFERENCES people (person_id),
+  audition_id BIGINT NOT NULL REFERENCES auditions (audition_id),
+  PRIMARY KEY (person_id, audition_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

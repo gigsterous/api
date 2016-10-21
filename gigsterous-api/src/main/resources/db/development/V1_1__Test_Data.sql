@@ -47,3 +47,9 @@ INSERT INTO people_events (person_id, event_id) VALUES
 	('3', '2'),
 	('4', '2');
 
+INSERT INTO auditions (audition_id, instrument, level, owner_id, event_id) VALUES 
+	('1', 'GUITAR', 'ADVANCED', '1', '1'),
+	('2', 'BASS', 'BEGINNER', '3', '2');
+	
+INSERT INTO people_auditions (person_id, audition_id) VALUES 
+	('6', '2');
