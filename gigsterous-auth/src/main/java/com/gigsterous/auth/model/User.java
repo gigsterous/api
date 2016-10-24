@@ -30,9 +30,7 @@ public class User implements UserDetails {
 	@Column(name = "user_id", nullable = false, updatable = false)
 	private Long id;
 	
-	@Column(name = "email", nullable = false, unique = true)
-	private String email;
-	
+	// username must be email
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 	
@@ -41,10 +39,6 @@ public class User implements UserDetails {
 	
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
-	
-	protected User() {
-		// hibernate
-	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -20,7 +20,7 @@ There are several profiles in the application which can be switched using SPRING
 The whole application is secured with OAuth2. Authorization server needs to be running and contacted for the access token:
 
 ```
-curl -X POST --user 'gigsterous:secret' -d 'grant_type=password&username=peter&password=password' http://localhost:9000/gigsterous-auth/oauth/token
+curl -X POST --user 'gigsterous:secret' -d 'grant_type=password&username=peter@hotmail.com&password=password' http://localhost:9000/gigsterous-auth/oauth/token
 ```
 
 Each request to the API must contain the following header:
