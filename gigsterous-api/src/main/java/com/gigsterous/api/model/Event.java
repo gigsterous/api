@@ -38,6 +38,10 @@ public class Event {
 	private String name;
 	
 	@ManyToOne
+	@JoinColumn (name="owner_id")
+	private Person owner;
+	
+	@ManyToOne
 	@JoinColumn (name="venue_id")
 	private Venue venue;
 	

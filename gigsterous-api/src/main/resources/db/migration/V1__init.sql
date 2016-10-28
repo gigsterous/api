@@ -50,6 +50,7 @@ DROP TABLE IF EXISTS events;
 CREATE TABLE events (
     event_id BIGINT PRIMARY KEY auto_increment,
     name VARCHAR(64),
+    owner_id BIGINT REFERENCES people (person_id),
     venue_id BIGINT REFERENCES venues (venue_id),
     start_date TIMESTAMP,
     end_date TIMESTAMP,

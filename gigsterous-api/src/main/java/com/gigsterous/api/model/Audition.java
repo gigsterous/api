@@ -17,7 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gigsterous.api.model.enums.Instrument;
 import com.gigsterous.api.model.enums.Level;
 
@@ -48,17 +48,17 @@ public class Audition {
 	private Set<Person> candidates = new HashSet<Person>();
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn (name="owner_id")
 	private Person owner;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn (name="selected_musician_id")
 	private Person selectedMusician;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn (name="event_id")
 	private Event event;
 
