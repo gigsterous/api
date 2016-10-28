@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gigsterous.api.model.enums.Instrument;
 import com.gigsterous.api.model.enums.Level;
 
@@ -38,7 +38,7 @@ public class Skill {
 	private Level level;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn (name="person_id")
 	private Person person;
 	
