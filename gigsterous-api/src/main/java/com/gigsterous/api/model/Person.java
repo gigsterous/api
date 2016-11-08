@@ -54,7 +54,7 @@ public class Person {
 	private String location;
 	
 	@Column(name = "date_birth")
-	@JsonFormat(pattern = "YYYY-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
 
 	@ManyToMany(cascade = CascadeType.ALL)
