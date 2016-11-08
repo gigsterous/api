@@ -1,7 +1,6 @@
 package com.gigsterous.api.model;
 
-
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,12 +45,12 @@ public class Event {
 	private Venue venue;
 	
 	@Column(name = "start_date")
-	@JsonFormat(pattern = "YYYY-MM-dd HH:mm")
-	private Timestamp startDate;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	private LocalDateTime startDate;
 	
 	@Column(name = "end_date")
-	@JsonFormat(pattern = "YYYY-MM-dd HH:mm")
-	private Timestamp endDate;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	private LocalDateTime endDate;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "people_events", joinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
