@@ -1,6 +1,6 @@
 package com.gigsterous.api.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,8 +54,8 @@ public class Person {
 	private String location;
 	
 	@Column(name = "date_birth")
-	@JsonFormat(pattern = "YYYY-MM-dd")
-	private Date dateOfBirth;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfBirth;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore

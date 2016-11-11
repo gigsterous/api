@@ -20,7 +20,7 @@ import com.gigsterous.api.repository.PersonRepository;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import static org.mockito.BDDMockito.given;
 import static org.hamcrest.Matchers.*;
@@ -46,7 +46,7 @@ public class EventControllerTest {
 		testEvent = new Event();
 		testEvent.setId(1l);
 		testEvent.setName("Party");
-		testEvent.setStartDate(new Timestamp(487296000));
+		testEvent.setStartDate(LocalDateTime.of(2016, 12, 12, 20, 30));
 		
 		Venue venue = new Venue();
 		venue.setId(1l);
@@ -64,7 +64,7 @@ public class EventControllerTest {
 		mvc.perform(get("/events/1").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
 				.andExpect(jsonPath("$.id", is(1)))
 				.andExpect(jsonPath("$.name", is("Party")))
-				.andExpect(jsonPath("$.startDate", is("1970-01-06 15:21")));
+				.andExpect(jsonPath("$.startDate", is("2016-12-12 20:30")));
 	}
 	
 	@Test
