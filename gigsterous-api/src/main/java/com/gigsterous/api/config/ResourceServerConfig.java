@@ -8,14 +8,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	
+
 	@Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.anonymous().and()
-                .authorizeRequests()
-                .antMatchers("/", "/lib/*", "/images/*", "/css/*", "/swagger-ui.js",
-                		"/swagger-ui.min.js", "/api-docs", "/fonts/*", "/api-docs/*", 
-                		"/api-docs/default/*", "index.html")
-                .permitAll();
-    }
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().anyRequest().authenticated();
+
+	}
 }
