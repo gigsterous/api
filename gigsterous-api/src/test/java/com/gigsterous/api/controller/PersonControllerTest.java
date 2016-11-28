@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.gigsterous.api.model.Person;
 import com.gigsterous.api.model.enums.Gender;
 import com.gigsterous.api.repository.PersonRepository;
+import com.gigsterous.api.service.ConnectionsService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,6 +30,9 @@ public class PersonControllerTest {
 
 	@MockBean
 	private PersonRepository personRepo;
+	
+	@MockBean
+	private ConnectionsService connenctionsService;
 
 	private Person testPerson;
 
@@ -67,7 +71,7 @@ public class PersonControllerTest {
 
 	@Test
 	public void responseOkPersonEnsemblesTest() throws Exception {
-		given(this.personRepo.findOne(1l)).willReturn(testPerson);
+		given(personRepo.findOne(1l)).willReturn(testPerson);
 		mvc.perform(get("/people/1/ensembles").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
 	}
 
@@ -79,13 +83,20 @@ public class PersonControllerTest {
 
 	@Test
 	public void responseOkPersonEventsTest() throws Exception {
-		given(this.personRepo.findOne(1l)).willReturn(testPerson);
+		given(personRepo.findOne(1l)).willReturn(testPerson);
 		mvc.perform(get("/people/1/events").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
 	}
 
 	@Test
 	public void responseNotFoundPersonEventsTest() throws Exception {
 		mvc.perform(get("/people/1/events").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void responseOkPersonConnectionsTest() throws Exception {
+		given(personRepo.findOne(1l)).willReturn(testPerson);
+		given(connenctionsService.getConnections(testPerson)).willReturn(null);
+		mvc.perform(get("/people/1/connections").accept(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
 	}
 
 }
