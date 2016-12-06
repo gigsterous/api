@@ -17,6 +17,7 @@ import com.gigsterous.api.model.Ensemble;
 import com.gigsterous.api.model.Event;
 import com.gigsterous.api.model.Person;
 import com.gigsterous.api.repository.PersonRepository;
+import com.gigsterous.api.service.ConnectionsService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +28,9 @@ public class PersonController {
 
 	@Autowired
 	private PersonRepository personRepo;
+	
+	@Autowired
+	private ConnectionsService connectionsService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<Person>> getPeople(@RequestParam(value = "from", required = false, defaultValue = "0") int from,
@@ -66,6 +70,19 @@ public class PersonController {
 
 		if (person != null) {
 			return new ResponseEntity<>(person.getEvents(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@RequestMapping(value = "/{id}/connections", method = RequestMethod.GET)
+	public ResponseEntity<Collection<Person>> getConnections(@PathVariable long id) {
+		log.debug("GET -connections for person {}", id);
+
+		Person person = personRepo.findOne(id);
+
+		if (person != null) {
+			return new ResponseEntity<>(connectionsService.getConnections(person), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
