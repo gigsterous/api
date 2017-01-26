@@ -29,6 +29,12 @@ Each request to the API must contain the following header:
 Authorization: Bearer $TOKEN$
 ```
 
+You can also login into the authorization server using a custom login page and specify the redirection url. It is possible to obtain a bearer token that way:
+
+```
+http://localhost:9000/gigsterous-auth/oauth/authorize?response_type=token&client_id=gigsterous&redirect_uri=http://localhost:9000/gigsterous-auth/user
+```
+
 ## Deployment via Docker
 
 Both servers have Dockerfiles and are ready to be deployed as Docker images. The build process is embedded in Maven and can be manually triggered like this:

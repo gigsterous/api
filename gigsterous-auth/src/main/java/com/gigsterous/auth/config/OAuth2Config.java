@@ -43,7 +43,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("gigsterous").secret("secret").accessTokenValiditySeconds(expiration)
-				.scopes("read", "write").authorizedGrantTypes("password", "refresh_token").resourceIds("resource");
+				.scopes("read", "write").authorizedGrantTypes("authorization_code",
+		                "refresh_token", "implicit", "password", "client_credentials").resourceIds("resource").autoApprove(true);
 	}
 
 }
