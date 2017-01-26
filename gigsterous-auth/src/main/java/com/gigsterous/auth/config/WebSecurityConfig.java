@@ -1,34 +1,39 @@
 package com.gigsterous.auth.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	@Qualifier("userDetailsService")
+	private UserDetailsService userDetailsService;
 
-	/**
-	 * Constructor disables the default security settings
-	 */
-	public WebSecurityConfig() {
-		super(true);
-	}
+	@Autowired
+    private AuthenticationManager authenticationManager;
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/login");
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+        http.formLogin().loginPage("/login").permitAll().and().requestMatchers()
+                .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access").and().authorizeRequests()
+                .anyRequest().authenticated();
+
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.parentAuthenticationManager(authenticationManager);
+        auth.userDetailsService(userDetailsService);
+    }
 
 }
