@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gigsterous.api.model.enums.Gender;
 
 import lombok.Getter;
@@ -60,6 +61,7 @@ public class Person {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	@JoinTable(name = "people_ensembles", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"), inverseJoinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"))
+	@JsonIgnoreProperties("people")
 	private Set<Ensemble> ensembles = new HashSet<Ensemble>();
 	
 	@OneToMany(mappedBy ="person")
@@ -68,6 +70,7 @@ public class Person {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
 	@JoinTable(name = "people_events", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"), inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"))
+	@JsonIgnoreProperties("people")
 	private Set<Event> events = new HashSet<Event>();
 
 }

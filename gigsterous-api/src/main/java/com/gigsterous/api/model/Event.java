@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -54,9 +55,11 @@ public class Event {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "people_events", joinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
+	@JsonIgnoreProperties("events")
 	private Set<Person> people = new HashSet<Person>();
 	
 	@OneToMany(mappedBy ="event")
+	@JsonIgnoreProperties("event")
 	private Set<Audition> auditions = new HashSet<Audition>();
 
 }

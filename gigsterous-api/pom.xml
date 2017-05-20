@@ -41,11 +41,10 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- Enabled WAR deployment to Tomcat -->
+		<!-- Generates HATEOAS REST layer from repositories -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 
 		<!-- Support for common test dependencies, including JUnit and Mockito -->
