@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gigsterous.api.model.enums.EnsembleType;
 
 import lombok.Getter;
@@ -41,6 +42,7 @@ public class Ensemble {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "people_ensembles", joinColumns = @JoinColumn(name = "ensemble_id", referencedColumnName = "ensemble_id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
+	@JsonIgnoreProperties("ensembles")
 	private Set<Person> people = new HashSet<Person>();
 
 }
