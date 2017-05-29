@@ -11,6 +11,5 @@ import com.gigsterous.api.model.Person;
 public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
 	
 	public Page<Person> findAll(Pageable pageable);
-	public Person findByEmail(String email);
 
 }

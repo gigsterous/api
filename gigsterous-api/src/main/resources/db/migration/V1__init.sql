@@ -4,7 +4,6 @@ CREATE TABLE people (
     person_id BIGINT PRIMARY KEY auto_increment,
     first_name VARCHAR(32),
     last_name VARCHAR(32),
-    email VARCHAR(128) UNIQUE,
     gender VARCHAR(8),
     location VARCHAR(32),
     date_birth TIMESTAMP,
