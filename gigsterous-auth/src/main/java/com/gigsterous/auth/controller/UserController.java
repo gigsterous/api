@@ -20,11 +20,13 @@ public class UserController {
 	
 	@RequestMapping("/user")
 	public User user(Principal principal) {
-		log.debug("Getting user based on principal: {}", principal.toString());
+		log.debug("Getting user based on principal: {}", principal.getName());
 		
+		// return principal with id as username
+		User user = userRepo.findOneByUsername(principal.getName());
+		user.setUsername(user.getId().toString());
 		
-		
-		return userRepo.findOneByUsername(principal.getName());
+		return user;
 	}
 
 }

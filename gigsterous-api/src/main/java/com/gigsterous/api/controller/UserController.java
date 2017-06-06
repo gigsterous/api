@@ -23,8 +23,8 @@ public class UserController {
 	 */
 	@RequestMapping("/user")
 	public Person user(Principal user) {
-		// username in auth server is always email
-		return personRepo.findByEmail(user.getName());
+		// username ireturned in principal is user id
+		return personRepo.findOne(Long.parseLong(user.getName()));
 	}
 
 }

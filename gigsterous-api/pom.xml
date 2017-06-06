@@ -70,7 +70,6 @@
 			<artifactId>spring-security-test</artifactId>
 		</dependency>
 
-
 		<!-- Database migration tool -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>

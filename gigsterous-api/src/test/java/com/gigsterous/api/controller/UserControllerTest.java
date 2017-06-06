@@ -25,7 +25,7 @@ public class UserControllerTest {
 	private PersonRepository personRepo;
 	
 	@Test
-	@WithMockUser(username = "john@email.cz", password = "password")
+	@WithMockUser(username = "2", password = "password")
 	public void authorizedUserTest() throws Exception {
 	    this.mvc.perform(get("/user")).andExpect(status().isOk());
 	}

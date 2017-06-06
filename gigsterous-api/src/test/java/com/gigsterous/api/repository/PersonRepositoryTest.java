@@ -24,13 +24,5 @@ public class PersonRepositoryTest {
         assertEquals("Peter", result.getFirstName());
         assertEquals("Smith", result.getLastName());
     }
-    
-    @Test
-    public void retrievesPersonByEmail() {   	
-        Person result = repository.findByEmail("john@email.cz");
-        
-        assertEquals("John", result.getFirstName());
-        assertEquals("Doe", result.getLastName());
-    }
 
 }
