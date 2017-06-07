@@ -5,15 +5,15 @@
 
 	<groupId>com.gigsterous.auth</groupId>
 	<artifactId>gigsterous-auth</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 
-	<name>gigsterous-auth</name>
+	<name>Gigsterous Auth</name>
 	<description>Auth server for Gigsterous</description>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.1.RELEASE</version>
+		<groupId>com.gigsterous</groupId>
+		<artifactId>gigsterous-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../gigsterous-parent</relativePath>
 	</parent>
 
 	<properties>
@@ -98,7 +98,6 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.11</version>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
@@ -114,21 +113,6 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.7.201606060606</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
