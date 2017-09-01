@@ -15,27 +15,41 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @Order(-20)
 @EnableResourceServer
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	@Qualifier("userDetailsService")
 	private UserDetailsService userDetailsService;
 
 	@Autowired
-    private AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 
-        http.formLogin().loginPage("/login").permitAll().and().requestMatchers()
-                .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access").and().authorizeRequests()
-                .anyRequest().authenticated();
+		// @formatter:off
+		http
+	        .authorizeRequests()
+	            .antMatchers("/register", "/confirm").permitAll()
+	            .anyRequest().authenticated()
+	            .and()
+	        .formLogin()
+	            .loginPage("/login")
+	            .defaultSuccessUrl("/profile")
+	            .permitAll()
+	            .and()
+	        .requestMatchers()
+	            .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access", "/*")
+	            .and()
+	        .logout()
+	            .permitAll();
+		// @formatter:on
 
-    }
+	}
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.parentAuthenticationManager(authenticationManager);
-        auth.userDetailsService(userDetailsService);
-    }
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.parentAuthenticationManager(authenticationManager);
+		auth.userDetailsService(userDetailsService);
+	}
 
 }
