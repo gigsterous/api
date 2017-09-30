@@ -1,5 +1,8 @@
 package com.gigsterous.auth.service;
 
+import com.gigsterous.auth.model.User;
+import com.gigsterous.auth.repository.UserRepository;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.gigsterous.auth.model.User;
-import com.gigsterous.auth.repository.UserRepository;
-
 @Service("userDetailsService")
 public class UserService implements UserDetailsService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -26,8 +26,8 @@ public class UserService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		return userRepository.findOneByUsername(username);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+		return userRepository.findOneByEmail(email);
 	}
 }
